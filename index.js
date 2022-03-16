@@ -1,20 +1,18 @@
-const request = require('postman-request');
 const forecast = require('./services/forecast');
 const geocode = require('./services/geocode');
 
-const lati = '-7.2053646', long = "-39.3091651";
 
-forecast(lati, long, (error, response) => {
-  if (error) {
-    return console.log(error);
-  }
+geocode("FJN", (geocodeErr, geocodeResponse) => {
+  if (geocodeErr) return console.log(geocodeErr);
 
-  const { temperature, feelslike, weather } = response;
+  const { latitude, longitude, name, address } = geocodeResponse;
 
-  console.log(`Actually is ${weather}, ${temperature} degrees and feels like ${feelslike}`);
-})
+  forecast(latitude, longitude, (forecastError, forecastResponse) => {
+    if (forecastError) return console.log(forecastError);
 
-geocode("FJN", (err, response) => {
-  if (err) return console.log(err);
-  console.log(response)
+    const { temperature, feelslike, weather } = forecastResponse;
+
+    console.log(`Actually ${address} is ${weather}, ${temperature} degrees and feels like ${feelslike}.`);
+  })
+
 })
