@@ -1,3 +1,24 @@
-h1 {
-  color: red;
+body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: azure;
+  font-family: Poppins;
+}
+
+.content {
+  flex: 1;
+}
+.footer {
+  border-top: 1px solid #999;
+  width: 100%;
+}
+.header {
+  color: #666;
+  width: 100%;
 }

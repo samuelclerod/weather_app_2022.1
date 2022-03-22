@@ -1,4 +1,5 @@
 const express = require("express");
+const res = require("express/lib/response");
 const hbs = require("hbs");
 const path = require("path");
 const app = express();
@@ -29,5 +30,8 @@ app.get('/help', (request, response) => {
   response.render('help', data);
 });
 
+app.get('*', (request, response) => {
+  response.render('404', { title: '🔍404' })
+})
 
 module.exports = app
