@@ -1,6 +1,9 @@
-const app = require("./src/app")
+require('dotenv').config();
+const app = require("./src/app");
 
-app.listen(3000, () => console.log("The server is running 🚀"))
+const port = process.env.PORT || 8000
+
+app.listen(port, () => console.log("The server is running 🚀"))
 
 // const forecast = require('./services/forecast');
 // const geocode = require('./services/geocode');
