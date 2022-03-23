@@ -1,5 +1,5 @@
 const request = require("postman-request");
-const { GEOCODE_BASE_URL, GEOCODE_ACCESS_KEY } = require("../../config");
+const { GEOCODE_BASE_URL, GEOCODE_ACCESS_KEY } = require("../config");
 
 const geocode = (searchTerm, callback) => {
 

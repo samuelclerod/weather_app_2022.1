@@ -4,6 +4,9 @@ const hbs = require("hbs");
 const path = require("path");
 const app = express();
 
+const geocode = require('./services/geocode');
+const forecast = require('./services/forecast');
+
 //static folder
 const publicDir = path.join(__dirname, '../public');
 app.use(express.static(publicDir));
@@ -13,6 +16,8 @@ const viewsDir = path.join(__dirname, './templates/views');
 app.set('views', viewsDir);
 const partialsDir = path.join(__dirname, './templates/partials');
 hbs.registerPartials(partialsDir);
+
+app.use(express.json())
 
 app.get('/', (request, response) => {
   const data = {
@@ -29,6 +34,30 @@ app.get('/help', (request, response) => {
   }
   response.render('help', data);
 });
+
+app.get('/weather', (request, response) => {
+  const { location } = request.query
+  if (!location || location.trim().length === 0) {
+    return response.status(400).json({ error: 'Empty location' })
+  }
+
+  geocode(location, (geocodeErr, geocodeResponse) => {
+    if (geocodeErr) {
+      console.log(geocodeErr)
+      return response.status(400).json({ error: geocodeErr });
+    }
+    const { latitude, longitude, address } = geocodeResponse;
+
+    forecast(latitude, longitude, (forecastError, forecastResponse) => {
+      if (forecastError) {
+        console.log(forecastError)
+        return response.status(400).json({ error: forecastError });
+      }
+
+      return response.json(forecastResponse)
+    })
+  })
+})
 
 app.get('*', (request, response) => {
   response.render('404', { title: '🔍404' })
