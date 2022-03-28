@@ -11,7 +11,11 @@ const forecast = (lati, long, callback) => {
   request(URL, (error, _, body) => {
 
     if (error) {
-      callback("Unavailable server", undefined);
+
+      callback({
+        status: 500,
+        message: "We cannot connect to the server!"
+      }, undefined);
     }
 
     const data = JSON.parse(body);
@@ -19,7 +23,10 @@ const forecast = (lati, long, callback) => {
 
     if (apiError) {
       callback(
-        `We can't proceed your request. Error type ${apiError.type}`,
+        {
+          status: 500,
+          message: `We can't proceed your request. Error type ${apiError.type}`
+        },
         undefined
       );
     }

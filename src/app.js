@@ -17,8 +17,6 @@ app.set('views', viewsDir);
 const partialsDir = path.join(__dirname, './templates/partials');
 hbs.registerPartials(partialsDir);
 
-app.use(express.json())
-
 app.get('/', (request, response) => {
   const data = {
     title: '⛅Weather App⛈️',
@@ -43,18 +41,18 @@ app.get('/weather', (request, response) => {
 
   geocode(location, (geocodeErr, geocodeResponse) => {
     if (geocodeErr) {
-      console.log(geocodeErr)
-      return response.status(400).json({ error: geocodeErr });
+      return response.status(geocodeErr.status).json({ error: geocodeErr.message });
     }
     const { latitude, longitude, address } = geocodeResponse;
 
     forecast(latitude, longitude, (forecastError, forecastResponse) => {
       if (forecastError) {
-        console.log(forecastError)
-        return response.status(400).json({ error: forecastError });
+        return response.status(forecastError.status).json({ error: forecastError.message });
       }
 
-      return response.json(forecastResponse)
+      return response.json({
+        ...forecastResponse, address
+      })
     })
   })
 })

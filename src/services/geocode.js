@@ -10,7 +10,10 @@ const geocode = (searchTerm, callback) => {
 
     if (error) {
       return callback(
-        "We cannot connect to the server!",
+        {
+          status: 500,
+          message: "We cannot connect to the server!"
+        },
         undefined
       )
     }
@@ -18,11 +21,18 @@ const geocode = (searchTerm, callback) => {
     const { features, message } = JSON.parse(body);
 
     if (message) {
-      return callback(message, undefined);
+      return callback({
+        status: 500,
+        message: message
+      }, undefined);
     }
 
     if (features.length === 0) {
-      return callback("Location not found!", undefined);
+      return callback(
+        {
+          status: 404,
+          message: "Location not found!",
+        }, undefined);
     }
 
     const { text, place_name, center } = features[0];

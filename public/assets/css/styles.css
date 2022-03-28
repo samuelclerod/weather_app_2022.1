@@ -13,6 +13,7 @@ body {
 
 .content {
   flex: 1;
+  width: 100%;
 }
 .footer {
   border-top: 1px solid #999;
@@ -21,4 +22,63 @@ body {
 .header {
   color: #666;
   width: 100%;
+}
+
+#error,
+#success {
+  display: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+#error {
+  border: 1px solid darkred;
+  background-color: #ffdcdc;
+  color: rgb(71, 0, 0);
+}
+
+#success {
+  border: 1px solid rgb(202, 221, 255);
+  color: back;
+  background-color: #fff;
+}
+
+.loading {
+  display: none;
+  background-image: url("../images/loading.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+  width: 720px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex: row;
+  justify-content: flex-start;
+  align-items: cenTER;
+}
+
+form button,
+form input {
+  padding: 4px 16px;
+  border: 1px solid rgb(216, 216, 216);
+  height: 32px;
+}
+
+form button {
+  border-radius: 0 8px 8px 0;
+  background-color: rgb(195, 245, 245);
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: rgb(94, 245, 245);
+}
+
+form input {
+  flex: 1;
+  border-radius: 8px 0 0 8px;
 }
