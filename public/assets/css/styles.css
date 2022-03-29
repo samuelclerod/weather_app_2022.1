@@ -82,3 +82,71 @@ form input {
   flex: 1;
   border-radius: 8px 0 0 8px;
 }
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.profile .description {
+  /* border: 1px solid #666; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.description h2 {
+  color: #666;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.profile img {
+  border: 1px solid #666;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+nav {
+  width: 100%;
+  margin: 0;
+  background-color: #ccc;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  /* width: 100%;  */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+}
+
+nav ul li a {
+  flex: 1;
+  text-align: center;
+  border-left: 1px solid #aaa;
+  text-decoration: none;
+  color: #333;
+  font-weight: bolder;
+}
+
+nav ul li a:hover {
+  background-color: #aaa;
+}

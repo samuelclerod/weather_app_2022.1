@@ -6,6 +6,7 @@ const app = express();
 
 const geocode = require('./services/geocode');
 const forecast = require('./services/forecast');
+const { pathToFileURL } = require("url");
 
 //static folder
 const publicDir = path.join(__dirname, '../public');
@@ -24,6 +25,21 @@ app.get('/', (request, response) => {
   }
   response.render('index', data)
 });
+
+app.get('/about', (request, response) => {
+  const aboutMe = {
+    name: 'Samuel Rodrigues',
+    role: 'Developer & Teacher',
+    employer: "Ambevtech & Unijuazeiro",
+    email: 'samuelclerod@gmail.com',
+    photoUrl: 'https://vignette.wikia.nocookie.net/heroes-and-villain/images/2/2d/Grievous.png/revision/latest?cb=20191222041944',
+  }
+
+  const title = "About Creator 🤖"
+
+  response.render('about', { ...aboutMe, title });
+
+})
 
 app.get('/help', (request, response) => {
   const data = {
