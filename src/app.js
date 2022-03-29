@@ -35,7 +35,7 @@ app.get('/about', (request, response) => {
     photoUrl: 'https://vignette.wikia.nocookie.net/heroes-and-villain/images/2/2d/Grievous.png/revision/latest?cb=20191222041944',
   }
 
-  const title = "About Creator 🤖"
+  const title = "🤖 About Creator 🤖"
 
   response.render('about', { ...aboutMe, title });
 
