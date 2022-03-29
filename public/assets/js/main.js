@@ -1,6 +1,6 @@
 const weatherForm = document.querySelector('#weatherForm');
 const search = document.querySelector('#weatherForm input');
-const baseURL = 'http://localhost:3333/weather'
+const baseURL = '/weather'
 const snackSuccess = document.querySelector("#success");
 const snackError = document.querySelector("#error");
 
